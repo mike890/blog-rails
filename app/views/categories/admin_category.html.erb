@@ -1,0 +1,25 @@
+<div class="jumbotron">
+	<h1>Administrador</h1>
+	<%= link_to "vista normal", categories_path(normal:true)%>
+	<table class="table">
+		<thead class="thead-dark">
+			<tr>
+				<th>Titulo</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @categories.each do |cat| %>
+				<tr>
+					<td><%="#{cat.name} #{cat.created_at.strftime("%d-%B-%Y")}"%></td>
+					<td>
+						<%= link_to "Editar ", edit_category_path(cat),class:"btn btn-success"%> 
+						<%= link_to "ver ", cat,class:"btn btn-info"%>
+						<%= link_to "Eliminar", cat, method: :delete, data:{confirm:"¿Seguro que desea eliminar el articulo?"},class:"btn btn-danger"%>
+					</td>
+
+				</tr>
+			<%end%>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,30 @@
+<div class="jumbotron">
+	<h1>Administrador</h1>
+	<%= link_to "vista normal", articles_path(normal:true)%>
+	<div class="table-responsive">
+		<table class="table">
+			<thead class="thead-dark">
+				<tr>
+					<th>Titulo</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+				<% @articles.each do |art| %>
+					<tr>
+						<td><%="#{art.title} #{art.created_at.strftime("%d-%B-%Y")}"%></td>
+						<td>
+							<%= link_to "Editar ", edit_article_path(art),class:"btn btn-success"%> 
+							<%= link_to "ver ", art,class:"btn btn-info"%>
+							<%= link_to "Eliminar", art, method: :delete, data:{confirm:"¿Seguro que desea eliminar el articulo?"},class:"btn btn-danger"%>
+						</td>
+
+					</tr>
+				<%end%>
+			</tbody>
+		</table>
+	</div>
+	<div class="flickr_pagination">
+		<%= will_paginate @articles %>
+	</div>
+</div>

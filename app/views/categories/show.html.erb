@@ -1,0 +1,21 @@
+<style>
+	.categories-show{
+		background: <%=@category.color%>
+	}
+</style>
+<div class="categories-show">
+	<h1 class="text-center"><%=@category.name%></h1>
+		<h5 class="text-center">
+			<% if !@category.user.nil? %>
+			<p>Creado por <%= @category.user.email %></p>
+			<%end%>
+		</h5>
+</div>
+<div class="row">
+	<div class="col-md-12">
+		<%= render @articles %>
+	</div>
+</div>
+<div class="flickr_pagination">
+	<%= will_paginate @articles %>
+</div>

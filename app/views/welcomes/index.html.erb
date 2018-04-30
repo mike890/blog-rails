@@ -1,0 +1,6 @@
+	<div class="jumbotron">
+	<% @articles.each do |a| %>
+		<h1 class="text-center"><%= link_to a.title, a %></h1>
+		<p class="text-center"><%= a.body%></p>
+	</div>
+<%end%>

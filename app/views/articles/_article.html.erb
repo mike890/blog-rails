@@ -1,0 +1,24 @@
+<div class="col-sm-12 col-md-6 col-lg-4 article-margin">
+	<div class="card jumbotron h-100">
+		<%= link_to article do %>
+			<div class="card-body">
+				<%= image_tag article.img_art(:medium), class:'card-img-top' %>
+				<h2 class="card-title"><%= link_to article.title, article%></h2>
+				<p><%= truncate_html(article.body.html_safe, length:100)%></p>
+				<%temp = "Categoria(s): "%>
+				<%article.categories.each do |cat|%>
+					<%temp += cat.name + " "%>
+				<%end%>
+				<p><%=temp%></p>
+				<% if user_signed_in? %>
+					<% if current_user.is_editor?%>
+						<%= link_to "Editar", edit_article_path(article), class:"btn btn-info" %>
+					<% end%>
+					<% if current_user.is_admin?%>
+						<%= link_to "Eliminar", article, method: :delete, data: {confirm: "¿Seguro que quiere eliminar el articulo?"}, class:"btn btn-danger"%>
+					<%end%>
+				<% end %>
+			</div>
+		<% end%>
+	</div>
+</div>

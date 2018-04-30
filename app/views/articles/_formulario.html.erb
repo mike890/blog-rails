@@ -1,0 +1,39 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="jumbotron">
+				<fieldset>
+    			<legend class="text-center"><%="#{titulo} Artículo"%></legend>
+					<%= form_for(@article, local: true) do |f|%>
+					 <% if @article.errors.any? %>
+		                <div id="error_explanation">
+		                  <h2><%= pluralize(@article.errors.count, "error") %> prohibited this category from being saved:</h2>
+		                  <ul>
+		                  <% @article.errors.full_messages.each do |message| %>
+		                    <li><%= message %></li>
+		                  <% end %>
+		                  </ul>
+               			 </div>
+		              <% end %>
+						<div class="form-group row">
+							<%= f.label :title, class:"col-md-4 col-form-label text-right"%>
+							<%= f.text_field :title, class:"col-md-4 form-control" %>
+						</div>	
+						<div class="form-group row">
+							<%= f.label "Imagen", class:"col-md-4 col-form-label text-right"%>
+							<%= f.file_field :img_art, class:"col-md-4 form-control" %>
+						</div>					
+							<%= f.trix_editor :body, class:"form-control"%>
+						<% Category.all.each do |c| %>
+							<%= check_box_tag "categories[]", c.id%> <%= c.name%>
+						<%end%>
+						<div class="form-group row">
+							<%= f.submit "aceptar", class:"btn btn-info col-md-2 offset-md-4"%>
+							<%= link_to "Atras", articles_path, class:"btn btn-info col-md-2 offset-md-1"%>
+						</div>
+					<%end%>
+				</fieldset>
+			</div>
+		</div>
+	</div>
+</div>	

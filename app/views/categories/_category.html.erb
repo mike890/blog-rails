@@ -1,0 +1,16 @@
+<style>
+	<%=".#{category.name.delete(' ')}"%>{
+		background: <%= category.color%> !important;
+	}
+	
+</style>
+<div class="col-md-3">
+	<div class="card">
+		<div class="card-body text-center <%= "#{category.name.delete(' ')}"%>">
+			<h2 class="card-title"><%= category.name%></h2>
+			<%= image_tag category.cat_img(:medium)%>
+			
+		</div>
+	</div>
+	
+</div>

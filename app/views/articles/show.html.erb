@@ -1,0 +1,50 @@
+<div class="jumbotron text-center">
+	<% if user_signed_in? && current_user.is_editor? %>
+		<div class="row text-right">
+			<div class="col-12 col-md-4 offset-md-5">
+				<%= link_to "Editar", edit_article_path(@article), class:"btn btn-primary" %>
+			</div>
+		</div>
+	<% end %>
+	<h2><%= @article.title%></h2>
+	<% if !@article.user.nil?%>
+		<p><%= @article.user.email%></p>
+	<%end%>
+	<div class="row">
+		<div class="col-sm-12 col-md-12">
+			<div class="text-center">
+				<%= image_tag @article.img_art(:medium)%>
+			</div>
+		</div>
+	</div>
+
+	<div class="article-safe text-center">
+		<p><%= @article.body.html_safe %></p>
+		<% @article.comments.each do |com| %>
+			<li>
+				<div class="row">
+					<div class="col-md-4 offset-md-2">
+						<p><%= com.user.email%>: <%=com.body%> </p>
+					</div>				
+					<div class="col-md-2">
+						<% if user_signed_in? && current_user == com.user %>
+							<%= link_to "Editar", edit_article_comment_url(@article, com), class:"btn btn-warning"%>
+							<%= link_to "Eliminar", [@article, com], data: {confirm: "¿Quieres eliminar el comentario?", :method => :delete}, class:"btn btn-danger"%>
+						<% end%>
+					</div>
+				</div>
+			</li>
+
+		<%end%> </br>
+		<% if user_signed_in? %>
+			<div class="row">
+				<div class="col-sm-12 col-md-12">
+					<%= render "comments/form", comment: @comment %>
+				</div>
+			</div>
+			
+		<%end%>
+	</div>
+	
+<!-- <%= link_to "Atras", root_path, class:"btn btn-secondary" %> -->	
+</div>

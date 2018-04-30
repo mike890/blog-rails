@@ -1,0 +1,38 @@
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-12">
+			<div class="jumbotron">
+				<h1 class="text-center">Contactanos</h1>
+				<%=form_for(@contact) do |f|%>
+					<% if @contact.errors.any? %>
+		                <div id="error_explanation">
+		                  <h2><%= pluralize(@contact.errors.count, "error") %> prohibited this contact from being saved:</h2>
+		                  <ul>
+		                  <% @contact.errors.full_messages.each do |message| %>
+		                    <li><%= message %></li>
+		                  <% end %>
+		                  </ul>
+               			 </div>
+		              <% end %>
+	              	<div class="form-group row">
+						<%= f.label "Asunto", class:"col-md-4 col-form-label text-right"%>
+						<%= f.text_field :title, class:"col-md-4 form-control" %>
+					</div>
+					<div class="form-group row">
+						<%= f.label "Correo", class:"col-md-4 col-form-label text-right"%>
+						<%= f.text_field :email, class:"col-md-4 form-control" %>
+					</div>
+					<div class="form-group row">
+						<%= f.label "Descripción", class:"col-md-4 col-form-label text-right"%>
+						<%= f.text_field :description, class:"col-md-4 form-control" %>
+					</div>
+					<div class="form-group row">
+						<%= f.submit "Enviar", class:"btn btn-info col-md-2 offset-md-4"%>
+					</div>
+				<%end%>
+			</div>
+
+			</p>
+		</div>
+	</div>
+</div>
