@@ -23,7 +23,7 @@ test:
 production:
   database: postgresql
   username: atkielski
-  database: blog_production
+  database: blog_test_udemi
   password: alucard890
   encoding: unicode
   # For details on connection pooling, see rails configuration guide
